@@ -92,6 +92,8 @@ A reconstrução é obtida pela transformação inversa: \(\widehat X=\widehat S
 \end{enumerate}
 
 \section{Reprodutibilidade e conclusões}
+O código-fonte, os arquivos de configuração e os resultados do experimento estão disponíveis no repositório público do projeto: \url{https://github.com/higinomatheus/ica-blind-image-separation}.\footnote{A disponibilidade pública do conjunto de dados depende de suas condições de distribuição.}
+
 Para reprodução: \texttt{pip install -r requirements.txt}; depois \texttt{python experimento.py --input ../mist\_images.mat}. O script gera figuras, \texttt{resultados.json} e arquivos NPZ com as componentes. Recomendam-se Python 3.11+ e o controle de versão de dependências. Os tempos de execução são dependentes do hardware e não devem ser interpretados isoladamente.
 
 Ambas as abordagens produziram componentes descorrelacionadas e reconstrução algébrica fiel. O FastICA apresentou menor informação mútua média estimada nesta execução e não indicou problema de convergência; assim é a solução preferida sob os critérios adotados. A ausência das fontes originais impede qualquer afirmação de separação exata. O experimento confirma que a avaliação em BSS genuinamente cega depende de métricas indiretas, análise visual e discussão cuidadosa das hipóteses.
