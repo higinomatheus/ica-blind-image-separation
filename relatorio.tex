@@ -7,7 +7,7 @@
 \graphicspath{{figuras/}}
 \hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black}
 \title{\textbf{Trabalho Prático 2}\\Análise de Componentes Independentes em Dados Cegos\\\large Separação cega de quatro imagens misturadas}
-\author{Relatório técnico — preencher nome e disciplina}
+\author{Relatório técnico — Matheus Higino}
 \date{Outubro de 2026}
 \begin{document}
 \maketitle
@@ -40,7 +40,7 @@ O branqueamento diagonaliza \(\Sigma_X=E\Lambda E^\top\) e transforma os dados c
 
 \section{Algoritmos e parâmetros}
 \subsection{FastICA — experimento principal}
-O FastICA procura direções que maximizem a não gaussianidade por iteração de ponto fixo. Utilizou-se a implementação \texttt{sklearn.decomposition.FastICA}, com \texttt{n\_components=4}, \texttt{algorithm='parallel'}, \texttt{whiten='unit-variance'}, contraste \texttt{logcosh}, \texttt{tol=1e-6}, \texttt{max\_iter=2000} e semente 42. O algoritmo terminou após 6 iterações. A não gaussianidade é uma condição favorável à identificabilidade da ICA sob hipóteses adequadas, mas não equivale a comprovação de fontes físicas recuperadas.
+O FastICA procura direções que maximizem a não gaussianidade por iteração de ponto fixo. Utilizou-se a implementação \texttt{sklearn.decomposition.FastICA}, com quatro componentes, algoritmo paralelo, branqueamento de variância unitária e contraste \texttt{logcosh}. A tolerância foi de \(10^{-6}\), o limite foi de 2.000 iterações e a semente foi 42. O algoritmo terminou após 6 iterações. A não gaussianidade é uma condição favorável à identificabilidade da ICA sob hipóteses adequadas, mas não equivale a comprovação de fontes físicas recuperadas.
 
 \subsection{JADE — experimento adicional}
 A segunda abordagem constrói matrizes de cumulantes de quarta ordem dos dados branqueados, usando
@@ -73,7 +73,7 @@ Erro relativo de reconstrução & 0 & $2,56\times10^{-16}$ & $2,63\times10^{-16}
 \bottomrule\end{tabular}
 \end{table}
 
-As componentes FastICA apresentaram excesso de curtose de aproximadamente \(-0,707,-1,571,-1,159,-1,035\). Para a solução JADE, os valores foram \(-1,156,-0,711,-1,579,-1,026\), sujeitos a permutações das componentes. Todos são diferentes de zero, indicando distribuições não gaussianas nesta amostra; não há equivalência direta entre maior curtose absoluta e separação correta. A IM média menor do FastICA sugere menor dependência estimada \textit{nesse critério e amostragem}, mas a diferença é modesta e não estabelece superioridade universal.
+As componentes FastICA apresentaram excesso de curtose de aproximadamente \(-0{,}707\), \(-1{,}571\), \(-1{,}159\) e \(-1{,}035\). Para a solução JADE, os valores foram \(-1{,}156\), \(-0{,}711\), \(-1{,}579\) e \(-1{,}026\), sujeitos a permutações das componentes. Todos são diferentes de zero, indicando distribuições não gaussianas nesta amostra; não há equivalência direta entre maior curtose absoluta e separação correta. A IM média menor do FastICA sugere menor dependência estimada \textit{nesse critério e amostragem}, mas a diferença é modesta e não estabelece superioridade universal.
 
 \begin{figure}[H]\centering\includegraphics[width=.48\textwidth]{correlacao_misturas.png}\includegraphics[width=.48\textwidth]{correlacao_fastica.png}\caption{Matrizes de correlação antes (esquerda) e depois do FastICA (direita).}\end{figure}
 
